@@ -4,19 +4,29 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+
+
 import "./assets/css/bootstrap.css"
 import "./assets/js/bootstrap.min"
 import "./assets/js/jquery-1.10.2.js"
 
+import axios from "axios"
+Vue.prototype.$axios = axios;
+
+import moment from 'moment'
+Vue.prototype.$moment = moment;
 
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<app/>'
+  template: '<app/>',
 
 })
