@@ -9,11 +9,11 @@ const Index = () => import('@/wel/Index')
 const Product = () => import("@/views/Product")
 const GmtESeal = () => import("@/views/esrules/GmtESeal")
 const GmtESign = () => import("@/views/esrules/GmtESign")
-
+const Login = () => import("@/components/login")
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   mode: "history",
   routes: [
     {
@@ -26,6 +26,12 @@ export default new Router({
       ]
 
 
+    },
+
+    {
+      path: '/user/login',
+      name: 'Login',
+      component: Login
     },
 
     {
@@ -48,4 +54,27 @@ export default new Router({
 
 
   ]
-})
+});
+
+export default router;
+
+// 导航守卫
+// 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
+router.beforeEach((to, from, next) => {
+  if (to.path === '/user/login') {
+    next();
+
+
+  }else if(to.path.match('^/gmt/')){// add other exclude
+
+
+  } else {
+    let token = localStorage.getItem('Authorization');
+
+    if (token === 'null' || token === '') {
+      next('/user/login');
+    } else {
+      next();
+    }
+  }
+});
