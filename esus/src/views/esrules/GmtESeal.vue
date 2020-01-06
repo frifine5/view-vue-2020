@@ -145,7 +145,13 @@
       test1() {
         let that = this
 
-        this.$axios.get( "/api/eseal/data")
+        var reqJson = {
+          a:  'a-value',
+          b:  'abc',
+          c: 123
+        }
+
+        this.$axios.post("/api/eseal/data", reqJson )
           .then(function(data){
           console.log("in ajax success")
 
