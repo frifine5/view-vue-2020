@@ -115,6 +115,7 @@
         modIndex: null,
 
 
+
       }
     },
     methods: {
@@ -182,7 +183,10 @@
       let afIn = this
       this.setSlist(afIn.users)
 
+
     },
+
+
 
 
 
@@ -200,5 +204,7 @@
     text-align:center;
 
   }
+
+
 
 </style>

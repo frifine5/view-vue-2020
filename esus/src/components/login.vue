@@ -2,14 +2,14 @@
 
   <div>
     <div class="col-lg-3"></div>
-    <div class="panel panel-primary col-lg-6 " >
+    <div class="panel panel-primary col-lg-6 ">
 
       <div class="panel-heading">
         <h3 class="panel-title">登录</h3>
 
       </div>
 
-      <div class="panel-body form-inline" >
+      <div class="panel-body form-inline">
 
         <input type="text" v-model="loginForm.username" placeholder="用户名"/>
         <input type="text" v-model="loginForm.password" placeholder="密码"/>
@@ -22,9 +22,10 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex';
+  import {mapMutations} from 'vuex';
+
   export default {
-    data () {
+    data() {
       return {
         loginForm: {
           username: '',
@@ -35,23 +36,31 @@
 
     methods: {
       ...mapMutations(['changeLogin']),
-      login () {
+      login() {
         let that = this;
         if (this.loginForm.username === '' || this.loginForm.password === '') {
           alert('账号或密码不能为空');
-        } else  if (this.loginForm.username+"" === 'a' && this.loginForm.password+"" === 'b'){
-          that.$router.push('/');
-        }else{
+        } else if (this.loginForm.username + "" === 'a' && this.loginForm.password + "" === 'b') {
 
-            that.$axios({
+          localStorage.setItem('userStore', '测试登录的用户');
+          sessionStorage.setItem('userStore', 'session 中存储的测试用户')
+
+          that.$router.push('/');
+        } else {
+
+          that.$axios({
             method: 'post',
             url: '/user/login',
             data: that.loginForm
           }).then(res => {
             console.log(res.data);
             that.userToken = 'Bearer ' + res.data.data.body.token;
+            that.username = res.data.data.body.username;
             // 将用户token保存到vuex中
-            that.changeLogin({ Authorization: that.userToken });
+            // that.changeLogin({Authorization: that.userToken, username: that.username});
+
+            localStorage.setItem('Authorization', that.userToken);
+            localStorage.setItem('userStore', that.username);
             that.$router.push('/index');
             alert('登陆成功');
           }).catch(error => {

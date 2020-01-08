@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Watermark from '@/assets/js/watermark';
+
 
 const Index = () => import('@/wel/Index')
 
@@ -13,6 +15,7 @@ const Login = () => import("@/components/login")
 const UserSearchHead = () => import("@/views/user/UserSearchHead")
 const UserMain = () => import("@/views/user/UserMain")
 const MonitorPopup = () => import("@/components/monitorPopup")
+
 
 
 Vue.use(Router)
@@ -85,20 +88,34 @@ export default router;
 // 导航守卫
 // 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
 router.beforeEach((to, from, next) => {
+
   if (to.path === '/user/login') {
     next();
-
+    sessionStorage.setItem('userStore', "用户登录")
 
   }else if(to.path.match('^/gmt/')){// add other exclude
 
-
   } else {
     let token = localStorage.getItem('Authorization');
-
     if (token === 'null' || token === '') {
       next('/user/login');
+      sessionStorage.setItem('userStore', "用户登录")
     } else {
       next();
+
     }
   }
+});
+
+
+router.afterEach((to) => {
+  /* 路由发生变化修改页面title */
+  // Watermark.set(store.state.user.userId);
+
+  // Watermark.set("用户名：某某某; 吾生尔有涯而知也无涯");
+  // Watermark.set(localStorage.getItem("userStore"));
+  let username = sessionStorage.getItem("userStore");
+  if(username == null) username = '用户登录'
+  Watermark.set(username);
+
 });

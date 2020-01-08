@@ -6,8 +6,20 @@
 </template>
 
 <script>
+
+  import Watermark from '@/assets/js/watermark';
 export default {
-  name: 'App'
+  name: 'App',
+  component:{
+    Watermark,
+
+  },
+  mounted: function () {
+    Watermark.set("水印内容")
+  },
+
+
+
 }
 </script>
 
