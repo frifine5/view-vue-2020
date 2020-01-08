@@ -10,6 +10,10 @@ const Product = () => import("@/views/Product")
 const GmtESeal = () => import("@/views/esrules/GmtESeal")
 const GmtESign = () => import("@/views/esrules/GmtESign")
 const Login = () => import("@/components/login")
+const UserSearchHead = () => import("@/views/user/UserSearchHead")
+const UserMain = () => import("@/views/user/UserMain")
+const MonitorPopup = () => import("@/components/monitorPopup")
+
 
 Vue.use(Router)
 
@@ -27,6 +31,26 @@ const router =  new Router({
 
 
     },
+    {
+      path: '/user/userMain',
+      name: 'userMain',
+      component: UserMain
+    },
+
+    {
+      path: '/user/userSearchHead',
+      name: 'userSearchHead',
+      component: UserSearchHead
+    },
+
+
+
+    {
+      path: '/test/dialog',
+      name: 'monitorPopup',
+      component: MonitorPopup
+    },
+
 
     {
       path: '/user/login',
