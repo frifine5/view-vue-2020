@@ -137,13 +137,13 @@
 
 
       headCallBack(){
-        this.closeDialog();
+       // 取消
+
       },
 
       headAgreeBack(data){
         console.log(data)
 
-        this.closeDialog();
       },
 
       headAddUserBack(data){

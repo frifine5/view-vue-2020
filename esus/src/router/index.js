@@ -96,7 +96,7 @@ router.beforeEach((to, from, next) => {
   }else if(to.path.match('^/gmt/')){// add other exclude
 
   } else {
-    let token = localStorage.getItem('Authorization');
+    let token = sessionStorage.getItem('Authorization');
     if (token === 'null' || token === '') {
       next('/user/login');
       sessionStorage.setItem('userStore', "用户登录")

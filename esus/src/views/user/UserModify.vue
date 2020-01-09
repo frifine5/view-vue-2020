@@ -11,8 +11,8 @@
             <table class="table form-group table-hover table-bordered">
               <thead>
                 <tr>
-                  <th>项目</th>
-                  <th>修改前</th>
+                  <th width="15%">项目</th>
+                  <th width="35%">修改前</th>
                   <th colspan="2">修改后</th>
                 </tr>
               </thead>
@@ -21,8 +21,8 @@
                 <tr>
                   <td><label for="oneName">姓名:</label></td>
                   <td>{{older.username}}({{older.sex}})</td>
-                  <td><input id ="oneName" type="text" class="form-control" v-model="oneUser.username"></td>
-                  <td>
+                  <td width="30%"><input id ="oneName" type="text" class="form-control" v-model="oneUser.username"></td>
+                  <td width="20%">
                     <select class="form-control" v-model="oneUser.sex">
                       <option value="男">男</option>
                       <option value="女">女</option>
@@ -129,7 +129,16 @@
     vertical-align: middle;
     font-size: 1.2em;
     align-content: center;
+    word-break:break-all;
+    word-wrap: break-word;
   }
+
+
+  div.modal-dialog{
+    width: 800px;
+    height: 500px;
+  }
+
 
 
 

@@ -42,7 +42,6 @@
           alert('账号或密码不能为空');
         } else if (this.loginForm.username + "" === 'a' && this.loginForm.password + "" === 'b') {
 
-          localStorage.setItem('userStore', '测试登录的用户');
           sessionStorage.setItem('userStore', 'session 中存储的测试用户')
 
           that.$router.push('/');
@@ -59,8 +58,8 @@
             // 将用户token保存到vuex中
             // that.changeLogin({Authorization: that.userToken, username: that.username});
 
-            localStorage.setItem('Authorization', that.userToken);
-            localStorage.setItem('userStore', that.username);
+            sessionStorage.setItem('Authorization', that.userToken);
+            sessionStorage.setItem('userStore', that.username);
             that.$router.push('/index');
             alert('登陆成功');
           }).catch(error => {

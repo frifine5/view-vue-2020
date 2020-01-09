@@ -9,7 +9,7 @@
             <td><label for="idNo">证件号:</label></td>
             <td><input id="idNo" type="text" class="form-control" v-model="idNo"></td>
             <td>
-              <label for="idType">证据类型:</label>
+              <label >证据类型:</label>
               <select id="idType" class="form-control" v-model="idTypeNo">
                 <option value="0">身份证</option>
 
