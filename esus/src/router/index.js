@@ -91,19 +91,19 @@ router.beforeEach((to, from, next) => {
 
   if (to.path === '/user/login') {
     next();
-    sessionStorage.setItem('userStore', "用户登录")
-
   }else if(to.path.match('^/gmt/')){// add other exclude
 
   } else {
-    let token = sessionStorage.getItem('Authorization');
-    if (token === 'null' || token === '') {
-      next('/user/login');
-      sessionStorage.setItem('userStore', "用户登录")
-    } else {
+    let token = localStorage.getItem("token")
+    if(token){
       next();
-
+    }else{
+      next({
+        path: '/user/login',
+        query: { redirect: to.fullPath } // 将刚刚要去的路由path（却无权限）作为参数，方便登录成功后直接跳转到该路由
+      });
     }
+
   }
 });
 
@@ -114,8 +114,12 @@ router.afterEach((to) => {
 
   // Watermark.set("用户名：某某某; 吾生尔有涯而知也无涯");
   // Watermark.set(localStorage.getItem("userStore"));
-  let username = sessionStorage.getItem("userStore");
+  let username = localStorage.getItem('username')
   if(username == null) username = '用户登录'
   Watermark.set(username);
 
 });
+
+
+
+
