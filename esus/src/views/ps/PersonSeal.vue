@@ -7,36 +7,36 @@
       <div class="panel panel-body panel-primary">
         <table class="table table-bordered" v-if="seals != null">
           <tr>
-            <td v-if="seals.sig1" width="30%" height="12%">
+            <td v-if="seals.sig1" width="30%" height="20%">
               <img :src="'data:image/png;base64,'+seals.sig1" width="50%" height="50%" @click="showSig(1)"/>
               <button class="btn" @click="remk(1)">清除</button>
             </td>
-            <td v-else width="30%" height="12%">
+            <td v-else width="30%" height="20%">
               <button class="btn" @click="mkitPreview(1)">添加手写签名1</button>
 
             </td>
 
-            <td v-if="seals.sig2" width="30%" height="12%">
+            <td v-if="seals.sig2" width="30%" height="20%">
               <img :src="'data:image/png;base64,'+seals.sig2" width="50%" height="50%" @click="showSig(2)"/>
               <button class="btn" @click="remk(3)">清除</button>
             </td>
-            <td v-else width="30%" height="12%">
+            <td v-else width="30%" height="20%">
               <button class="btn" @click="mkitPreview(2)">添加手写签名2</button>
             </td>
           </tr>
           <tr>
-            <td v-if="seals.sig3" width="30%" height="12%">
+            <td v-if="seals.sig3" width="30%" height="20%">
               <img :src="'data:image/png;base64,'+seals.sig3" width="50%" height="50%" @click="showSig(3)"/>
               <button class="btn" @click="remk(3)">清除</button>
             </td>
-            <td v-else width="30%" height="12%">
+            <td v-else width="30%" height="20%">
               <button class="btn" @click="mkitPreview(3)">添加手写签名3</button>
             </td>
 
-            <td v-if="seals.seal" width="30%" height="12%">
+            <td v-if="seals.seal" width="30%" height="20%">
               <img :src="'data:image/png;base64,'+seals.seal" width="50%" height="50%" @click="showSig(4)"/>
             </td>
-            <td v-else width="30%" height="12%">
+            <td v-else width="30%" height="20%">
               <button class="btn" @click="mkPsSeal">制作&nbsp;&nbsp;个人私章</button>
             </td>
           </tr>
