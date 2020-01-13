@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Watermark from '@/assets/js/watermark';
+import JSignature from '@/assets/js/jSignature.min'
+import JSignatureNF from '@/assets/js/jSignature.min.noconflict'
+
+
 
 
 const Index = () => import('@/wel/Index')
@@ -16,7 +20,8 @@ const UserSearchHead = () => import("@/views/user/UserSearchHead")
 const UserMain = () => import("@/views/user/UserMain")
 const MonitorPopup = () => import("@/components/monitorPopup")
 
-
+const PersonHome = () => import("@/views/ps/PersonMain")
+const PersonSeal = () => import("@/views/ps/PersonSeal")
 
 Vue.use(Router)
 
@@ -34,6 +39,23 @@ const router =  new Router({
 
 
     },
+    {
+      path: '/person/personHome',
+      name: 'personHome',
+      component: PersonHome
+    },
+
+    {
+      path: '/person/personSeal',
+      name: 'personSeal',
+      component: PersonSeal
+    },
+
+
+
+
+
+
     {
       path: '/user/userMain',
       name: 'userMain',

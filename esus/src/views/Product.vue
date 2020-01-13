@@ -45,29 +45,53 @@
       </tr>
       </tbody>
     </table>
+    <div>
+      <div id="sigDiv" style="width:100% ;height:100% ;text-align:center ;padding-top:8px"></div>
+      <div>
+          <button class="btn btn-primary" @click="cltSig">清除</button>
+          <button class="btn btn-primary" @click="corSig">确认</button>
+
+      </div>
+      <div>
+        <div id="seeSigv" ></div>
+      </div>
+      <div>
+        {{sigData}}
+      </div>
+
+
+    </div>
+
+
+
   </div>
 </template>
 
 
 <script>
+  import '@/assets/js/jSignature.min.noconflict'
+
   export default {
     name: "Product",
     data() {
       return {
         list: [
-          { id: 1, name: "奔驰", ctime: new Date() },
-          { id: 2, name: "宝马", ctime: new Date() }
+          {id: 1, name: "奔驰", ctime: new Date()},
+          {id: 2, name: "宝马", ctime: new Date()}
         ],
         id: "",
         name: "",
-        keywords: ""
+        keywords: "",
+        sigData: "",
+
+
       };
     },
     methods: {
       add() {
         // vue中已经实现了数据的双向绑定，每当我们修改了data中的数据，Vue会默认监听到
         // 数据的改动，自动把最新的数据，应用到页面上
-        this.list.push({ id: this.id, name: this.name, ctime: new Date() });
+        this.list.push({id: this.id, name: this.name, ctime: new Date()});
       },
 
       del(id) {
@@ -107,8 +131,57 @@
             return item;
           }
         });
+      },
+
+      cltSig(){
+        $('#sigDiv').jSignature("reset") //清除画布并重新渲染的装饰就可以了
+        $('#seeSigv').empty();
+        this.sigData = '';
+      },
+
+      corSig(){
+        // $('#sigDiv')
+        var datapair =  $('#sigDiv').jSignature("getData", "svgbase64")
+        var i = new Image()
+        i.src = "data:" + datapair[0] + "," + datapair[1]
+        i.classList.add('img-rounded');
+        i.width = 240;
+        i.height = 100;
+
+
+        $('#seeSigv').empty();
+        $(i).appendTo($('#seeSigv'));
+        this.sigData = datapair[1];
+
       }
-    }
+
+
+
+
+    },
+    mounted() {
+
+      $("#sigDiv").jSignature({color: "#f00", width: 300, height: 120, "background-color": '#00ffcc'});
+      /*
+var $sigdiv = $("#signature")
+$sigdiv.jSignature() //// inits的jSignature部件。
+//一些涂鸦后......
+$sigdiv.jSignature("reset") //清除画布并重新渲染的装饰就可以了
+// 获取签名的SVG和呈现在浏览器中的SVG.
+//此导出插件返回数组[MIMETYPE，签名的SVG的base64编码字符串划]
+var datapair = $sigdiv.jSignature("getData", "svgbase64")
+var i = new Image()
+i.src = "data:" + datapair[0] + "," + datapair[1]
+$(i).appendTo($("#someelement") // 添加图像（SVG），到 DOM
+// 获取签名的“base30”数据对
+datapair = $sigdiv.jSignature("getData","base30")
+//重新导入数据到jSignature。
+$sigdiv.jSignature("setData", "data:" + datapair.join(","))
+       */
+
+    },
+
+
   };
 </script>
 
@@ -118,14 +191,17 @@
   h2 {
     font-weight: normal;
   }
+
   ul {
     list-style-type: none;
     padding: 0;
   }
+
   li {
     display: inline-block;
     margin: 0 10px;
   }
+
   a {
     color: #42b983;
   }

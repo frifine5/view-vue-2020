@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <div class="panel panel-primary col-lg-4 pull-right" style="margin-right: 100px;">
+    <div class="panel panel-primary col-lg-3 pull-right" style="margin-right: 100px;">
       <div class="panel-heading">
         <h4 class="panel-title">用户登录</h4>
       </div>
@@ -10,8 +10,8 @@
 
         <table class="table form-group table-hover ">
           <tr>
-            <td width="45%"><label for="name">用户名:</label></td>
-            <td width="50%"><input type="text" id="name" class="form-control" v-model="loginForm.username"
+            <td width="30%"><label for="name">用户名:</label></td>
+            <td width="70%"><input type="text" id="name" class="form-control" v-model="loginForm.username"
                                    placeholder="用户名"/></td>
           </tr>
 
@@ -51,6 +51,7 @@
           username: '',
           password: '',
           type: 0,
+          account: '',
 
         }
       };
@@ -64,7 +65,7 @@
           this.$my_message(
             {
               content: '账号或密码不能为空',
-              time: 5000,
+              time: 3000,
               type: 'warning',
               hasClose: false,
             });
@@ -93,27 +94,29 @@
               });
             } else {
               that.userToken = res.data.data.token;
+              that.account = res.data.data.account;
               that.username = res.data.data.name;
 
               localStorage.setItem('token', that.userToken)
               localStorage.setItem('username', that.username)
+              localStorage.setItem('userAccount', that.account)
 
               if (0 === that.type) {
                 // 去普通用户页
                 that.$router.push('/product');
 
               } else if (1 === that.type) {
-                // 去管理员页
+                // 去管理员页 // todo
                 that.$router.push('/');
 
-              } else {
+              } else {      // todo
                 that.$router.push('/');
               }
               // alert('登陆成功');
               this.$my_message(
                 {
                   content: '登录成功',
-                  time: 2000,
+                  time: 1000,
                   type: 'success',
                   hasClose: true,
                 });
@@ -122,8 +125,8 @@
             // alert('账号或密码错误');
             this.$my_message(
               {
-                content: '账号或密码错误',
-                time: 2000,
+                content: '服务繁忙，请稍后重试',
+                time: 3000,
                 type: 'warning',
                 hasClose: true,
               });
@@ -146,7 +149,7 @@
   }
 
   #typeSlt {
-    width: 120px;
+    width: 60%;
   }
 
 
