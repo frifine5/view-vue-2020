@@ -18,7 +18,7 @@
 
             <td v-if="seals.sig2" width="30%" height="20%">
               <img :src="'data:image/png;base64,'+seals.sig2" width="50%" height="50%" @click="showSig(2)"/>
-              <button class="btn" @click="remk(3)">清除</button>
+              <button class="btn" @click="remk(2)">清除</button>
             </td>
             <td v-else width="30%" height="20%">
               <button class="btn" @click="mkitPreview(2)">添加手写签名2</button>
@@ -34,7 +34,7 @@
             </td>
 
             <td v-if="seals.seal" width="30%" height="20%">
-              <img :src="'data:image/png;base64,'+seals.seal" width="50%" height="50%" @click="showSig(4)"/>
+              <img :src="'data:image/png;base64,'+seals.seal" width="50%" height="30%" @click="showSig(4)"/>
             </td>
             <td v-else width="30%" height="20%">
               <button class="btn" @click="mkPsSeal">制作&nbsp;&nbsp;个人私章</button>
@@ -86,18 +86,20 @@
       return {
         info: '这是个人用户主页的头',
         seals: {
-          sig1: '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',
+          sig1: '',
           sig2: '',
           sig3: '',
           seal: '',
         },
         tmpmkNum: '',
         tmpSigData: '',
+        account: '',
 
 
       }
 
     },
+
 
     methods: {
 
@@ -114,6 +116,10 @@
         i.classList.add('img-rounded');
         i.width = 300;
         i.height = 120;
+        if(num === 4){
+          i.width = 180;
+          i.height = 180;
+        }
 
         $('#drawSig').empty();
         $(i).appendTo($('#drawSig'));
@@ -122,6 +128,7 @@
 
       mkitPreview(num) {
         this.tmpmkNum = num
+        this.tmpSigData = ''
         var sigDiv = document.createElement("div");
         sigDiv.id = 'sigDiv'
         $('#drawSig').empty();
@@ -130,21 +137,43 @@
 
         $("#sigDiv").jSignature({color: "#f00", width: 300, height: 120, "background-color": '#00ffcc'});
 
-
       },
-      remk(num){
-        if (1 === num){
-          this.tmpSigData = this.seals.sig1
-          this.seals.sig1 = '';
-        }else if (2 === num){
-          this.tmpSigData = this.seals.sig2
-          this.seals.sig2 = '';
-        }else if (3 === num){
-          this.tmpSigData = this.seals.sig3
-          this.seals.sig3 = '';
-        }
-        else return
 
+      remk(num){
+        $('#viewSig').empty();
+        $('#drawSig').empty();
+
+        let flag = confirm('您确定清除手写签名' + num);
+        if(!flag) return;
+
+        let that = this
+        var reqJson = {
+          "account": this.account,
+          "sigNo": num
+        }
+
+        that.$axios.post('/api/ps/clearPsSig', reqJson).then(res => {
+          console.log(res.data);
+          if (0 !== res.data.code) {
+            this.$my_message({
+              content: '清除失败: ' + res.data.msg,
+              time: 2000,
+              type: 'error',
+              hasClose: true,
+            });
+          } else {
+            this.getPsSeals();
+          }
+        }).catch(error => {
+          this.$my_message(
+            {
+              content: '服务繁忙，请稍后重试:' + error,
+              time: 3000,
+              type: 'warning',
+              hasClose: true,
+            });
+          console.log(error);
+        });
       },
 
       madeSig() {
@@ -166,33 +195,145 @@
         i.classList.add('img-rounded');
         i.width = 240;
         i.height = 100;
+        this.tmpSigData = datapair[1]
 
         $('#viewSig').empty();
         $(i).appendTo($('#viewSig'));
 
 
-
       },
 
       corSig() {
-        this.tmpmkNum = ''
-        $('#drawSig').empty();
+        let that = this
+        if(!this.tmpSigData){
+          this.$my_message({
+            content: '提示: 请先预览',
+            time: 2000,
+            type: 'warning',
+            hasClose: true,
+          });
+          return;
+        }
 
-// 确认 todo ...
+        let num = this.tmpmkNum
+        var reqJson = {
+          "account": this.account,
+          "sig": this.tmpSigData,
+          "sigNo": num ,
+          "imgType": "svg"
+        }
+
+        that.$axios.post('/api/ps/upPsSigs', reqJson).then(res => {
+          if (0 !== res.data.code) {
+            this.$my_message({
+              content: '上传失败: ' + res.data.msg,
+              time: 2000,
+              type: 'error',
+              hasClose: true,
+            });
+          } else {
+            that.getPsSeals();
+            that.tmpmkNum = ''
+            $('#drawSig').empty();
+            that.tmpSigData = '';
+            $('#viewSig').empty();
+          }
+        }).catch(error => {
+          this.$my_message(
+            {
+              content: '服务繁忙，请稍后重试:' + error,
+              time: 3000,
+              type: 'warning',
+              hasClose: true,
+            });
+          console.log(error);
+        });
 
       },
 
       mkPsSeal(){
+        let flag = confirm("个人名章一经生成不得删除，除非注销用户");
+        if(!flag) return;
+        let that = this
+        var reqJson = {
+          "account": this.account
+        }
 
+        that.$axios.post('/api/ps/genPsSeal', reqJson).then(res => {
+          if (0 !== res.data.code) {
+            this.$my_message({
+              content: '制作失败: ' + res.data.msg,
+              time: 2000,
+              type: 'error',
+              hasClose: true,
+            });
+          } else {
+            this.$my_message(
+              {
+                content: '制作成功',
+                time: 1000,
+                type: 'success',
+                hasClose: true,
+              });
+            that.getPsSeals();
+          }
+        }).catch(error => {
+          this.$my_message(
+            {
+              content: '服务繁忙，请稍后重试:' + error,
+              time: 3000,
+              type: 'warning',
+              hasClose: true,
+            });
+          console.log(error);
+        });
 
 
       },
 
+
+      getPsSeals(){
+        let that = this;
+        let account = localStorage.getItem("userAccount");
+        var reqJson = {
+          "account": account
+        }
+        that.$axios.post('/api/ps/getPsSigs', reqJson).then(res => {
+          // console.log(res.data);
+          if (0 !== res.data.code) {
+            this.$my_message({
+              content: '查询失败: ' + res.data.msg,
+              time: 2000,
+              type: 'error',
+              hasClose: true,
+            });
+          } else {
+            that.seals.sig1 = res.data.data.sig1;
+            that.seals.sig2 = res.data.data.sig2;
+            that.seals.sig3 = res.data.data.sig3;
+            that.seals.seal = res.data.data.seal;
+            that.account = res.data.data.account;
+          }
+        }).catch(error => {
+          this.$my_message(
+            {
+              content: '服务繁忙，请稍后重试:' + error,
+              time: 3000,
+              type: 'warning',
+              hasClose: true,
+            });
+          console.log(error);
+        });
+
+      },
 
 
     },
 
     created() {
+
+      this.getPsSeals();
+
 
     },
 
