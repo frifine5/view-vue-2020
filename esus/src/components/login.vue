@@ -101,14 +101,14 @@
               localStorage.setItem('username', that.username)
               localStorage.setItem('userAccount', that.account)
 
-              if (0 === that.type) {
+              let type = that.loginForm.type;
+              if (0 === type) {
                 // 去普通用户页
-                that.$router.push('/product');
+                that.$router.push('/person/personHome');
 
-              } else if (1 === that.type) {
-                // 去管理员页 // todo
-                that.$router.push('/');
-
+              } else if (1 === type || "1" === type) {
+                // 去管理员页
+                that.$router.push('/user/userMain');
               } else {      // todo
                 that.$router.push('/');
               }
