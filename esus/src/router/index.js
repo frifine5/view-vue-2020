@@ -23,6 +23,8 @@ const MonitorPopup = () => import("@/components/monitorPopup")
 const PersonHome = () => import("@/views/ps/PersonMain")
 const PersonSeal = () => import("@/views/ps/PersonSeal")
 
+const PdfDemo = () => import("@/views/pdf/pdfDemo")
+
 Vue.use(Router)
 
 const router =  new Router({
@@ -51,7 +53,11 @@ const router =  new Router({
       component: PersonSeal
     },
 
-
+    {
+      path: '/pdf/pdfDemo',
+      name: 'pdfDemo',
+      component: PdfDemo
+    },
 
 
 

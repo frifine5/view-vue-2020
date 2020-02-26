@@ -48,7 +48,7 @@
 <style scoped>
 
   .psHeadBack{
-    position: fixed;
+    position: absolute;
     width: 76%;
     height: 6em;
     left: calc( 10%);
